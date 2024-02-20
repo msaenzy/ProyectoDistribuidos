@@ -177,76 +177,43 @@
 
     <!-- Nueva sección añadida debajo -->
 
-    <div class="section">
-        <h1>Anomalías de Consumo de Energía por Parroquia</h1>
+    <!-- Nueva sección añadida debajo -->
 
-        <select id="parroquias" onchange="cambiarParroquia()">
-            <option value="50">Parroquia 50</option>
-            <option value="51">Parroquia 51</option>
-            <option value="52">Parroquia 52</option>
-            <option value="53">Parroquia 53</option>
-            <option value="54">Parroquia 54</option>
-            <option value="55">Parroquia 55</option>
-            <option value="56">Parroquia 56</option>
-            <option value="57">Parroquia 57</option>
-            <option value="62">Parroquia 62</option>
-        </select>
+<div class="section">
+    <h1>Anomalías de Consumo de Energía por Parroquia</h1>
 
-        <div id="imagenParroquia">
-            <h2>Parroquia 50</h2>
-            <img id="imagen" src="50_consumo_energia_por_mes.png" alt="Consumo de energía en Parroquia 50">
-        </div>
+    <select id="parroquias" onchange="cambiarParroquia()">
+        <option value="50">Parroquia 50</option>
+        <option value="51">Parroquia 51</option>
+        <option value="52">Parroquia 52</option>
+        <option value="53">Parroquia 53</option>
+        <option value="54">Parroquia 54</option>
+        <option value="55">Parroquia 55</option>
+        <option value="56">Parroquia 56</option>
+        <option value="57">Parroquia 57</option>
+        <option value="62">Parroquia 62</option>
+    </select>
 
-        <script>
-            function cambiarParroquia() {
-                var select = document.getElementById("parroquias");
-                var parroquiaSeleccionada = select.options[select.selectedIndex].value;
-                var imagen = document.getElementById("imagen");
-                imagen.src = parroquiaSeleccionada + "_consumo_energia_por_mes.png";
-                imagen.alt = "Consumo de energía en Parroquia " + parroquiaSeleccionada;
-                var titulo = document.getElementById("tituloParroquia");
-                titulo.textContent = "Parroquia " + parroquiaSeleccionada;
-            }
-        </script>
+    <div id="imagenParroquia">
+        <h2>Parroquia 50</h2>
+        <img id="imagenParroquia" src="50_consumo_energia_por_mes.png" alt="Consumo de energía en Parroquia 50">
     </div>
-    <div class="section">
-        <h1>Anomalías de Consumo de Energía por Parroquia</h1>
+
+    <script>
+        function cambiarParroquia() {
+            var select = document.getElementById("parroquias");
+            var parroquiaSeleccionada = select.options[select.selectedIndex].value;
+            var imagen = document.getElementById("imagenParroquia");
+            var imagenParroquia = imagen.getElementsByTagName("img")[0];
+            imagenParroquia.src = parroquiaSeleccionada + "_consumo_energia_por_mes.png";
+            imagenParroquia.alt = "Consumo de energía en Parroquia " + parroquiaSeleccionada;
+            var titulo = imagen.getElementsByTagName("h2")[0];
+            titulo.textContent = "Parroquia " + parroquiaSeleccionada;
+        }
+    </script>
+</div>
+
     
-        <select id="parroquias" onchange="cambiarParroquia()">
-            <option value="50">Parroquia 50</option>
-            <option value="51">Parroquia 51</option>
-            <option value="52">Parroquia 52</option>
-            <option value="53">Parroquia 53</option>
-            <option value="54">Parroquia 54</option>
-            <option value="55">Parroquia 55</option>
-            <option value="56">Parroquia 56</option>
-            <option value="57">Parroquia 57</option>
-            <option value="62">Parroquia 62</option>
-        </select>
-    
-        <div id="imagenParroquia">
-            <h2>Parroquia 50</h2>
-            <img id="imagen" src="50_consumo_energia_por_mes.png" alt="Consumo de energía en Parroquia 50">
-        </div>
-    
-        <script>
-            function cambiarParroquia() {
-                var select = document.getElementById("parroquias");
-                var parroquiaSeleccionada = select.options[select.selectedIndex].value;
-                var imagen = document.getElementById("imagen");
-                imagen.src = parroquiaSeleccionada + "_consumo_energia_por_mes.png";
-                imagen.alt = "Consumo de energía en Parroquia " + parroquiaSeleccionada;
-                var titulo = document.getElementById("tituloParroquia");
-                titulo.textContent = "Parroquia " + parroquiaSeleccionada;
-            }
-        </script>
-    </div>
-    
-    <!-- Nueva sección añadida a lado de la sección "Anomalías de Consumo de Energía por Parroquia" -->
-    <div class="section">
-        <h1>Otra Sección</h1>
-        <p>Contenido de la nueva sección.</p>
-    </div>
     
 </body>
 </html>
