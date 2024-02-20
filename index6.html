@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
+    <style>
+        /* Estilo para el contenedor de la galería */
+        .gallery-container {
+            position: relative;
+            width: 800px; /* Ancho de la galería */
+            height: 400px; /* Altura de la galería */
+            overflow: hidden;
+            margin: 0 auto;
+        }
+
+        /* Estilo para las imágenes */
+        .gallery-img {
+            width: 100%; /* Ajustar al ancho del contenedor */
+            height: auto;
+            display: none; /* Ocultar las imágenes por defecto */
+        }
+
+        /* Estilo para las flechas */
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #1E5B7A; /* Color azul oscuro */
+            font-size: 24px;
+            opacity: 0.5;
+            z-index: 1000;
+            transition: opacity 0.3s ease;
+        }
+
+        .prev:hover, .next:hover {
+            opacity: 0.9;
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="gallery-container">
+        <!-- Imágenes de la galería -->
+        <img class="gallery-img" src="rd.png" alt="RD">
+        <img class="gallery-img" src="cr.png" alt="CR">
+        <img class="gallery-img" src="rp.png" alt="RP">
+        <img class="gallery-img" src="cb.png" alt="CB">
+        <img class="gallery-img" src="co.png" alt="CO">
+        <img class="gallery-img" src="tp.png" alt="TP">
+        <img class="gallery-img" src="ba.png" alt="BA">
+        <img class="gallery-img" src="te.png" alt="TE">
+        <img class="gallery-img" src="dp.png" alt="DP">
+        <img class="gallery-img" src="of.png" alt="OF">
+        <img class="gallery-img" src="bp.png" alt="BP">
+
+        <!-- Flecha previa -->
+        <div class="prev" onclick="plusSlides(-1)">&#10094;</div>
+        <!-- Flecha siguiente -->
+        <div class="next" onclick="plusSlides(1)">&#10095;</div>
+    </div>
+
+    <script>
+        let slideIndex = 0;
+        let slideInterval = setInterval(showSlides, 2000); // Cambiar imagen cada 2 segundos
+
+        function showSlides() {
+            let slides = document.getElementsByClassName("gallery-img");
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}    
+            slides[slideIndex-1].style.display = "block";  
+        }
+
+        function plusSlides(n) {
+            clearInterval(slideInterval);
+            showSlides(slideIndex += n);
+            slideInterval = setInterval(showSlides, 2000);
+        }
+    </script>
+</body>
+</html>

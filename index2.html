@@ -1,0 +1,95 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Anomalías de Consumo de Energía</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 5px;
+                padding: 0;
+                background-color: #f4f4f4;
+            }
+
+            h1, h2 {
+                text-align: center;
+                color: #333;
+            }
+
+            select {
+                display: block;
+                margin: 20px auto;
+                padding: 10px;
+                font-size: 16px;
+            }
+
+            img {
+                display: block;
+                margin: 0 auto;
+                margin-top: 20px;
+                border: 2px solid #ccc;
+                border-radius: 5px;
+                max-width: 100%; /* Cambia este valor para hacer la imagen más pequeña */
+                height: auto;
+            }
+
+            /* Responsive Styles */
+            @media only screen and (min-width: 600px) {
+                /* Larger screens */
+                select {
+                    width: 50%;
+                }
+
+                img {
+                    max-width: 90%; /* Ajusta este valor según sea necesario */
+                }
+            }
+
+            @media only screen and (min-width: 900px) {
+                /* Extra large screens */
+                select {
+                    width: 30%;
+                }
+
+                img {
+                    max-width: 100%; /* Cambia este valor para hacer la imagen más grande */
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Anomalías de Consumo de Energía por Mes</h1>
+
+        <select id="meses" onchange="cambiarMes()">
+            <option value="enero">Enero</option>
+            <option value="febrero">Febrero</option>
+            <option value="marzo">Marzo</option>
+            <option value="abril">Abril</option>
+            <option value="mayo">Mayo</option>
+            <option value="junio">Junio</option>
+            <option value="julio">Julio</option>
+            <option value="agosto">Agosto</option>
+            <option value="septiembre">Septiembre</option>
+            <option value="octubre">Octubre</option>
+        </select>
+
+        <div id="imagenMes">
+            <h2>Enero</h2>
+            <img src="consumo_energia_enero.png" alt="Consumo de energía en enero">
+        </div>
+
+        <script>
+            function cambiarMes() {
+                var select = document.getElementById("meses");
+                var mesSeleccionado = select.options[select.selectedIndex].value;
+                var imagenMes = document.getElementById("imagenMes");
+                var titulo = imagenMes.getElementsByTagName("h2")[0];
+                var imagen = imagenMes.getElementsByTagName("img")[0];
+                titulo.textContent = mesSeleccionado.charAt(0).toUpperCase() + mesSeleccionado.slice(1);
+                imagen.src = "consumo_energia_" + mesSeleccionado + ".png";
+                imagen.alt = "Consumo de energía en " + mesSeleccionado;
+            }
+        </script>
+    </body>
+    </html>

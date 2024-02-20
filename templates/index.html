@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anomalías de Consumo de Energía</title>
+</head>
+<body>
+    <h1>Anomalías de Consumo de Energía por Mes</h1>
+    
+    {% for mes in meses %}
+    <h2>{{ mes }}</h2>
+    <img src="{{ url_for('static', filename='consumo_energia_' + mes.lower() + '.png') }}" alt="Consumo de energía en {{ mes }}">
+    
+    <h3>CLICOD de Anomalías:</h3>
+    <ul>
+        {% for index in anomalous_indices[mes] %}
+        <li>{{ index }}</li>
+        {% endfor %}
+    </ul>
+    {% endfor %}
+</body>
+</html>

@@ -1,0 +1,106 @@
+from flask import Flask, render_template
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.neighbors import LocalOutlierFactor
+
+app = Flask(__name__)
+
+# Ruta al archivo CSV
+file_path = 'C:/Users/famil/Downloads/PROYECTODISTRIBUIDO/energia.csv'
+
+
+# Cargar el archivo CSV en un DataFrame de Pandas
+data = pd.read_csv(file_path, encoding='latin1')
+
+@app.route('/')
+def index():
+    # Seleccionar una muestra aleatoria de 10 filas del DataFrame
+    muestra_aleatoria = data.sample(n=10)
+
+    # Crear un modelo de detección de anomalías
+    lof = LocalOutlierFactor(contamination=0.1)
+
+    # Entrenar el modelo con los datos de consumo de energía
+    consumo = muestra_aleatoria[['CONSUMO_KWH_ENERO', 'CONSUMO_KWH_FEBRERO', 'CONSUMO_KWH_MARZO',
+                                 'CONSUMO_KWH_ABRIL', 'CONSUMO_KWH_MAYO', 'CONSUMO_KWH_JUNIO',
+                                 'CONSUMO_KWH_JULIO', 'CONSUMO_KWH_AGOSTO', 'CONSUMO_KWH_SEPTIEMBRE',
+                                 'CONSUMO_KWH_OCTUBRE']]
+    lof.fit(consumo)
+
+    # Predecir las anomalías
+    anomalies = lof.fit_predict(consumo)
+    muestra_aleatoria['Anomalies'] = anomalies
+
+    # Graficar el consumo de energía
+    plt.figure(figsize=(10, 6))
+    plt.bar(range(len(muestra_aleatoria)), muestra_aleatoria['CONSUMO_KWH_ENERO'], color='skyblue')
+    plt.title('Consumo de energía en enero')
+    plt.xlabel('Muestra')
+    plt.ylabel('Consumo de energía (kWh)')
+    plt.xticks(range(len(muestra_aleatoria)), muestra_aleatoria.index)
+    plt.grid(True)
+
+    # Marcar las anomalías
+    for i, anomaly in enumerate(anomalies):
+        if anomaly == -1:
+            plt.annotate('Anomaly', xy=(i, muestra_aleatoria['CONSUMO_KWH_ENERO'].iloc[i]), xytext=(i, 0),
+                         textcoords='offset points', arrowprops=dict(facecolor='red', shrink=0.05))
+
+    # Guardar el gráfico como imagen
+    plt.savefig('static/consumo_energia_enero.png')
+
+    return render_template('index.html')
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+
+
+------
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anomalías de Consumo de Energía</title>
+</head>
+<body>
+    <h1>Anomalías de Consumo de Energía por Mes</h1>
+    
+    <h2>Enero</h2>
+    <img src="{{ url_for('static', filename='consumo_energia_enero.png') }}" alt="Consumo de energía en enero">
+    
+    <h2>Febrero</h2>
+    <img src="{{ url_for('static', filename='consumo_energia_febrero.png') }}" alt="Consumo de energía en febrero">
+    
+    <h2>Marzo</h2>
+    <img src="{{ url_for('static', filename='consumo_energia_marzo.png') }}" alt="Consumo de energía en marzo">
+    
+    <h2>Abril</h2>
+    <img src="{{ url_for('static', filename='consumo_energia_abril.png') }}" alt="Consumo de energía en abril">
+    
+    <h2>Mayo</h2>
+    <img src="{{ url_for('static', filename='consumo_energia_mayo.png') }}" alt="Consumo de energía en mayo">
+    
+    <h2>Junio</h2>
+    <img src="{{ url_for('static', filename='consumo_energia_junio.png') }}" alt="Consumo de energía en junio">
+    
+    <h2>Julio</h2>
+    <img src="{{ url_for('static', filename='consumo_energia_julio.png') }}" alt="Consumo de energía en julio">
+    
+    <h2>Agosto</h2>
+    <img src="{{ url_for('static', filename='consumo_energia_agosto.png') }}" alt="Consumo de energía en agosto">
+    
+    <h2>Septiembre</h2>
+    <img src="{{ url_for('static', filename='consumo_energia_septiembre.png') }}" alt="Consumo de energía en septiembre">
+    
+    <h2>Octubre</h2>
+    <img src="{{ url_for('static', filename='consumo_energia_octubre.png') }}" alt="Consumo de energía en octubre">
+    
+    
+    <!-- Agrega más meses aquí si los tienes -->
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consumo de Energía por Cantón</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        select {
+            display: block;
+            margin: 20px auto;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        img {
+            display: block;
+            margin: 0 auto;
+            margin-top: 20px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Responsive Styles */
+        @media only screen and (min-width: 600px) {
+            /* Larger screens */
+            select {
+                width: 50%;
+            }
+
+            img {
+                max-width: 70%;
+            }
+        }
+
+        @media only screen and (min-width: 900px) {
+            /* Extra large screens */
+            select {
+                width: 30%;
+            }
+
+            img {
+                max-width: 50%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Consumo de Energía por Cantón</h1>
+
+    <select id="cantones" onchange="cambiarCanton()">
+        <option value="1">Cantón 1</option>
+        <option value="2">Cantón 2</option>
+        <option value="3">Cantón 3</option>
+        <option value="4">Cantón 4</option>
+        <option value="7">Cantón 7</option>
+        <option value="9">Cantón 9</option>
+        <option value="10">Cantón 10</option>
+        <option value="11">Cantón 11</option>
+        <option value="12">Cantón 12</option>
+        <option value="16">Cantón 16</option>
+        <option value="20">Cantón 20</option>
+        <option value="22">Cantón 22</option>
+        <option value="23">Cantón 23</option>
+        <option value="27">Cantón 27</option>
+    </select>
+
+    <div id="imagenCanton">
+        <h2 id="tituloCanton">Cantón 1</h2>
+        <img id="imagen" src="1_consumo_energia_por_mes_pie.png" alt="Consumo de energía en Cantón 1">
+    </div>
+
+    <script>
+        function cambiarCanton() {
+            var select = document.getElementById("cantones");
+            var cantonSeleccionado = select.options[select.selectedIndex].value;
+            var imagen = document.getElementById("imagen");
+            imagen.src = cantonSeleccionado + "_consumo_energia_por_mes_pie.png";
+            imagen.alt = "Consumo de energía en Cantón " + cantonSeleccionado;
+            var titulo = document.getElementById("tituloCanton");
+            titulo.textContent = "Cantón " + cantonSeleccionado;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imágenes de Meses</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        .image-container {
+            margin-left: 20px; /* Espacio entre los botones y la imagen */
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="buttons">
+            <button class="button" onclick="mostrarImagen('enero')">Enero</button>
+            <button class="button" onclick="mostrarImagen('febrero')">Febrero</button>
+            <button class="button" onclick="mostrarImagen('marzo')">Marzo</button>
+            <button class="button" onclick="mostrarImagen('abril')">Abril</button>
+            <button class="button" onclick="mostrarImagen('mayo')">Mayo</button>
+            <button class="button" onclick="mostrarImagen('junio')">Junio</button>
+            <button class="button" onclick="mostrarImagen('julio')">Julio</button>
+            <button class="button" onclick="mostrarImagen('agosto')">Agosto</button>
+            <button class="button" onclick="mostrarImagen('septiembre')">Septiembre</button>
+            <button class="button" onclick="mostrarImagen('octubre')">Octubre</button>
+        </div>
+        <div class="image-container">
+            <img id="imagen" src="enero.jpg" alt="Imagen de enero">
+        </div>
+    </div>
+
+    <script>
+        function mostrarImagen(mes) {
+            var imagen = document.getElementById('imagen');
+            imagen.src = mes + '.jpg';
+            imagen.alt = 'Imagen de ' + mes;
+        }
+    </script>
+</body>
+</html>
