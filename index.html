@@ -87,7 +87,7 @@
         </select>
 
         <div id="imagenMes">
-            <h2>Enero</h2>
+            
             <img src="consumo_energia_enero.png" alt="Consumo de energía en enero">
         </div>
 
@@ -104,9 +104,7 @@
             }
         </script>
     </div>
-
     <div class="section">
-        <h1>Imágenes de Meses</h1>
         
         <div class="container">
             <div class="buttons">
@@ -127,17 +125,29 @@
         </div>
     
         <style>
+            .section {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                height: 100vh;
+            }
+    
             .container {
                 display: flex;
+                flex-direction: column;
                 align-items: center;
-                justify-content: center;
-                height: 100vh;
+                justify-content: flex-start;
+                width: 100%;
+                max-width: 800px; /* Ajusta este valor según sea necesario */
+                margin-top: 20px;
             }
     
             .buttons {
                 display: flex;
-                flex-direction: column;
+                flex-wrap: wrap;
                 gap: 10px;
+                justify-content: center;
             }
     
             .button {
@@ -156,7 +166,7 @@
             }
     
             .image-container {
-                margin-left: 20px; /* Espacio entre los botones y la imagen */
+                margin-top: 20px; /* Espacio entre los botones y la imagen */
             }
     
             img {
@@ -174,6 +184,7 @@
             }
         </script>
     </div>
+    
 
     <!-- Nueva sección añadida debajo -->
 
@@ -209,6 +220,46 @@
             imagenParroquia.alt = "Consumo de energía en Parroquia " + parroquiaSeleccionada;
             var titulo = imagen.getElementsByTagName("h2")[0];
             titulo.textContent = "Parroquia " + parroquiaSeleccionada;
+        }
+    </script>
+</div>
+
+
+<div class="section">
+    <h1>Consumo de Energía por Cantón</h1>
+
+    <select id="cantones" onchange="cambiarCanton()">
+        <option value="1">Cantón 1</option>
+        <option value="2">Cantón 2</option>
+        <option value="3">Cantón 3</option>
+        <option value="4">Cantón 4</option>
+        <option value="7">Cantón 7</option>
+        <option value="9">Cantón 9</option>
+        <option value="10">Cantón 10</option>
+        <option value="11">Cantón 11</option>
+        <option value="12">Cantón 12</option>
+        <option value="16">Cantón 16</option>
+        <option value="20">Cantón 20</option>
+        <option value="22">Cantón 22</option>
+        <option value="23">Cantón 23</option>
+        <option value="27">Cantón 27</option>
+    </select>
+
+    <div id="imagenCanton">
+        
+        <img id="imagenCanton" src="1_consumo_energia_por_mes_pie.png" alt="Consumo de energía en Cantón 1">
+    </div>
+
+    <script>
+        function cambiarCanton() {
+            var select = document.getElementById("cantones");
+            var cantonSeleccionado = select.options[select.selectedIndex].value;
+            var imagen = document.getElementById("imagenCanton");
+            var imagenCanton = imagen.getElementsByTagName("img")[0];
+            imagenCanton.src = cantonSeleccionado + "_consumo_energia_por_mes_pie.png";
+            imagenCanton.alt = "Consumo de energía en Cantón " + cantonSeleccionado;
+            var titulo = imagen.getElementsByTagName("h2")[0];
+            titulo.textContent = "Cantón " + cantonSeleccionado;
         }
     </script>
 </div>
