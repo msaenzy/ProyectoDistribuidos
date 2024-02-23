@@ -141,7 +141,7 @@
         </select>
 
         <div id="imagenMes">
-            <h2>Enero</h2>
+            
             <img src="consumo_energia_enero.png" alt="Consumo de energía en enero">
         </div>
 
@@ -152,14 +152,14 @@
                 var imagenMes = document.getElementById("imagenMes");
                 var titulo = imagenMes.getElementsByTagName("h2")[0];
                 var imagen = imagenMes.getElementsByTagName("img")[0];
-                titulo.textContent = mesSeleccionado.charAt(0).toUpperCase() + mesSeleccionado.slice(1);
+                
                 imagen.src = "consumo_energia_" + mesSeleccionado + ".png";
                 imagen.alt = "Consumo de energía en " + mesSeleccionado;
             }
         </script>
     </div>
     <div class="section">
-    <h1>Imágenes de Meses</h1>
+    
     
     <div class="container">
         <div class="buttons">
@@ -247,7 +247,7 @@
 
 <div class="section">
 
-    <h1>Anomalías de Consumo de Energía por Parroquia</h1>
+    <h2>Anomalías de Consumo de Energía por Parroquia</h2>
 
     <select id="parroquias" onchange="cambiarParroquia()">
         <option value="50">Parroquia 50</option>
@@ -282,7 +282,7 @@
 
 
 <div class="section">
-    <h1>Consumo de Energía por Cantón</h1>
+    <h2>Consumo de Energía por Cantón</h2>
 
     <select id="cantones" onchange="cambiarCanton()">
         <option value="1">Cantón 1</option>
