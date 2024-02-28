@@ -1,133 +1,264 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard de Anomalías de Consumo de Energía</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 5px;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        margin: 5px;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
 
-        .section {
-            margin: 20px;
-            padding: 10px;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            float: left;
-            width: calc(50% - 40px);
-            box-sizing: border-box;
-        }
+      .section {
+        margin: 20px;
+        padding: 10px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        float: left;
+        width: calc(50% - 40px);
+        box-sizing: border-box;
+      }
 
-        h1, h2 {
-            text-align: center;
-            color: #333;
-        }
+      h1,
+      h2 {
+        text-align: center;
+        color: #333;
+      }
 
+      select {
+        display: block;
+        margin: 20px auto;
+        padding: 10px;
+        font-size: 16px;
+      }
+
+      img {
+        display: block;
+        margin: 0 auto;
+        margin-top: 20px;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        max-width: 100%; /* Cambia este valor para hacer la imagen más pequeña */
+        height: auto;
+      }
+
+      /* Responsive Styles */
+      @media only screen and (min-width: 600px) {
+        /* Larger screens */
         select {
-            display: block;
-            margin: 20px auto;
-            padding: 10px;
-            font-size: 16px;
+          width: 50%;
         }
 
         img {
-            display: block;
-            margin: 0 auto;
-            margin-top: 20px;
-            border: 2px solid #ccc;
-            border-radius: 5px;
-            max-width: 100%; /* Cambia este valor para hacer la imagen más pequeña */
-            height: auto;
+          max-width: 90%; /* Ajusta este valor según sea necesario */
+        }
+      }
+
+      @media only screen and (min-width: 900px) {
+        /* Extra large screens */
+        select {
+          width: 30%;
         }
 
-        /* Responsive Styles */
-        @media only screen and (min-width: 600px) {
-            /* Larger screens */
-            select {
-                width: 50%;
-            }
-
-            img {
-                max-width: 90%; /* Ajusta este valor según sea necesario */
-            }
+        img {
+          max-width: 100%; /* Cambia este valor para hacer la imagen más grande */
         }
-
-        @media only screen and (min-width: 900px) {
-            /* Extra large screens */
-            select {
-                width: 30%;
-            }
-
-            img {
-                max-width: 100%; /* Cambia este valor para hacer la imagen más grande */
-            }
-        }
+      }
     </style>
 
     <!-----nuevos ESTILOS-->
     <style>
-        /* Estilo para la sección */
-        .small-section {
-            width: 25%; /* Tamaño de la nueva sección, 25% más pequeña */
-            margin: 10px;
-            padding: 10px;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            float: left;
-            box-sizing: border-box;
-        }
+      /* Estilo para la sección */
+      .small-section {
+        width: 25%; /* Tamaño de la nueva sección, 25% más pequeña */
+        margin: 10px;
+        padding: 10px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        float: left;
+        box-sizing: border-box;
+      }
 
-        /* Estilo para el contenedor de la galería */
-        .small-section .gallery-container {
-            width: 100%; /* Ancho de la galería */
-            height: 100%; /* Altura de la galería */
-            overflow: hidden;
-            margin: 0 auto;
-        }
+      /* Estilo para el contenedor de la galería */
+      .small-section .gallery-container {
+        width: 100%; /* Ancho de la galería */
+        height: 100%; /* Altura de la galería */
+        overflow: hidden;
+        margin: 0 auto;
+      }
 
-        /* Estilo para las imágenes */
-        .small-section .gallery-img {
-            width: 100%; /* Ajustar al ancho del contenedor */
-            height: auto;
-        }
+      /* Estilo para las imágenes */
+      .small-section .gallery-img {
+        width: 100%; /* Ajustar al ancho del contenedor */
+        height: auto;
+      }
 
-        /* Estilo para las flechas */
-        .small-section .prev, .small-section .next {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            cursor: pointer;
-            color: #1E5B7A; /* Color azul oscuro */
-            font-size: 24px;
-            opacity: 0.5;
-            z-index: 1000;
-            transition: opacity 0.3s ease;
-        }
+      /* Estilo para las flechas */
+      .small-section .prev,
+      .small-section .next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: #1e5b7a; /* Color azul oscuro */
+        font-size: 24px;
+        opacity: 0.5;
+        z-index: 1000;
+        transition: opacity 0.3s ease;
+      }
 
-        .small-section .prev:hover, .small-section .next:hover {
-            opacity: 0.9;
-        }
+      .small-section .prev:hover,
+      .small-section .next:hover {
+        opacity: 0.9;
+      }
 
-        .small-section .prev {
-            left: 10px;
-        }
+      .small-section .prev {
+        left: 10px;
+      }
 
-        .small-section .next {
-            right: 10px;
-        }
+      .small-section .next {
+        right: 10px;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="section">
-        <h2>Anomalías de Consumo de Energía por Mes</h2>
+      <h2>Anomalías de Consumo de Energía por Mes</h2>
 
-        <select id="meses" onchange="cambiarMes()">
+      <select id="meses" onchange="cambiarMes()">
+        <option value="enero">Enero</option>
+        <option value="febrero">Febrero</option>
+        <option value="marzo">Marzo</option>
+        <option value="abril">Abril</option>
+        <option value="mayo">Mayo</option>
+        <option value="junio">Junio</option>
+        <option value="julio">Julio</option>
+        <option value="agosto">Agosto</option>
+        <option value="septiembre">Septiembre</option>
+        <option value="octubre">Octubre</option>
+      </select>
+
+      <div id="imagenMes">
+        <img
+          src="consumo_energia_enero.png"
+          alt="Consumo de energía en enero"
+        />
+      </div>
+
+      <script>
+        function cambiarMes() {
+          var select = document.getElementById("meses");
+          var mesSeleccionado = select.options[select.selectedIndex].value;
+          var imagenMes = document.getElementById("imagenMes");
+          var titulo = imagenMes.getElementsByTagName("h2")[0];
+          var imagen = imagenMes.getElementsByTagName("img")[0];
+
+          imagen.src = "consumo_energia_" + mesSeleccionado + ".png";
+          imagen.alt = "Consumo de energía en " + mesSeleccionado;
+        }
+      </script>
+    </div>
+
+    <div class="section">
+      <div class="container">
+        <div class="buttons">
+          <button class="button" onclick="mostrarImagen('enero')">Enero</button>
+          <button class="button" onclick="mostrarImagen('febrero')">
+            Febrero
+          </button>
+          <button class="button" onclick="mostrarImagen('marzo')">Marzo</button>
+          <button class="button" onclick="mostrarImagen('abril')">Abril</button>
+          <button class="button" onclick="mostrarImagen('mayo')">Mayo</button>
+          <button class="button" onclick="mostrarImagen('junio')">Junio</button>
+          <button class="button" onclick="mostrarImagen('julio')">Julio</button>
+          <button class="button" onclick="mostrarImagen('agosto')">
+            Agosto
+          </button>
+          <button class="button" onclick="mostrarImagen('septiembre')">
+            Septiembre
+          </button>
+          <button class="button" onclick="mostrarImagen('octubre')">
+            Octubre
+          </button>
+        </div>
+        <div class="image-container">
+          <img id="imagen" src="enero.png" alt="Imagen de enero" />
+        </div>
+      </div>
+
+      <style>
+        .section {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: flex-start;
+          height: 100vh;
+        }
+
+        .container {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: flex-start;
+          width: 100%;
+          max-width: 680px; /* Ajusta este valor según sea necesario */
+          margin-top: 20px;
+        }
+
+        .buttons {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+          justify-content: center;
+        }
+
+        .button {
+          padding: 10px 20px;
+          background-color: #007bff;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          text-align: center;
+          transition: background-color 0.3s;
+        }
+
+        .button:hover {
+          background-color: #0056b3;
+        }
+
+        .image-container {
+          margin-top: 20px; /* Espacio entre los botones y la imagen */
+        }
+
+        img {
+          max-width: 100%;
+          height: auto;
+          border-radius: 5px;
+        }
+      </style>
+
+      <script>
+        function mostrarImagen(mes) {
+          var imagen = document.getElementById("imagen");
+          imagen.src = mes + ".png";
+          imagen.alt = "Imagen de " + mes;
+        }
+      </script>
+    </div>
+</div>
+    <!-- Nueva sección añadida debajo -->
+
+    <!-- Nueva sección añadida debajo -->
+    <div class="section">
+        <h3>Anomalías de Consumo de Energía por Meses</h3>
+    
+        <select id="meses" onchange="cambiarMes(this.value)">
             <option value="enero">Enero</option>
             <option value="febrero">Febrero</option>
             <option value="marzo">Marzo</option>
@@ -139,237 +270,95 @@
             <option value="septiembre">Septiembre</option>
             <option value="octubre">Octubre</option>
         </select>
-
-        <div id="imagenMes">
-            
-            <img src="consumo_energia_enero.png" alt="Consumo de energía en enero">
+    
+        <div id="imagenMes" style="max-width: 100%; overflow: hidden;">
+            <img id="imagenConsumo" src="consumo_enero.png" alt="Consumo de energía en enero" style="max-width: 100%; height: auto;" />
         </div>
-
+    
         <script>
-            function cambiarMes() {
-                var select = document.getElementById("meses");
-                var mesSeleccionado = select.options[select.selectedIndex].value;
-                var imagenMes = document.getElementById("imagenMes");
-                var titulo = imagenMes.getElementsByTagName("h2")[0];
-                var imagen = imagenMes.getElementsByTagName("img")[0];
-                
-                imagen.src = "consumo_energia_" + mesSeleccionado + ".png";
-                imagen.alt = "Consumo de energía en " + mesSeleccionado;
+            function cambiarMes(mesSeleccionado) {
+                var imagen = document.getElementById("imagenConsumo");
+                imagen.src = "consumo_" + mesSeleccionado + ".png"; // Cambiar la fuente de la imagen según el mes seleccionado
+                imagen.alt = "Consumo de energía en " + mesSeleccionado.charAt(0).toUpperCase() + mesSeleccionado.slice(1);
             }
         </script>
     </div>
-    <div class="section">
     
     
-    <div class="container">
-        <div class="buttons">
-            <button class="button" onclick="mostrarImagen('enero')">Enero</button>
-            <button class="button" onclick="mostrarImagen('febrero')">Febrero</button>
-            <button class="button" onclick="mostrarImagen('marzo')">Marzo</button>
-            <button class="button" onclick="mostrarImagen('abril')">Abril</button>
-            <button class="button" onclick="mostrarImagen('mayo')">Mayo</button>
-            <button class="button" onclick="mostrarImagen('junio')">Junio</button>
-            <button class="button" onclick="mostrarImagen('julio')">Julio</button>
-            <button class="button" onclick="mostrarImagen('agosto')">Agosto</button>
-            <button class="button" onclick="mostrarImagen('septiembre')">Septiembre</button>
-            <button class="button" onclick="mostrarImagen('octubre')">Octubre</button>
-        </div>
-        <div class="image-container">
-            <img id="imagen" src="enero.png" alt="Imagen de enero">
-        </div>
-    </div>
-
-    <style>
-        .section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            height: 100vh;
-        }
-
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            width: 100%;
-            max-width: 680px; /* Ajusta este valor según sea necesario */
-            margin-top: 20px;
-        }
-
-        .buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-        }
-
-        .button {
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-align: center;
-            transition: background-color 0.3s;
-        }
-
-        .button:hover {
-            background-color: #0056b3;
-        }
-
-        .image-container {
-            margin-top: 20px; /* Espacio entre los botones y la imagen */
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 5px;
-        }
-    </style>
-
-    <script>
-        function mostrarImagen(mes) {
-            var imagen = document.getElementById('imagen');
-            imagen.src = mes + '.png';
-            imagen.alt = 'Imagen de ' + mes;
-        }
-    </script>
 </div>
-
-
-    <!-- Nueva sección añadida debajo -->
-
-    <!-- Nueva sección añadida debajo -->
-
 <div class="section">
+    <h2>Heatmap</h2>
+    <img src="heatmap.png" alt="Heatmap" style="width: 100%; height: auto" />
+  </div>
 
-    <h2>Anomalías de Consumo de Energía por Parroquia</h2>
-
-    <select id="parroquias" onchange="cambiarParroquia()">
-        <option value="50">Parroquia 50</option>
-        <option value="51">Parroquia 51</option>
-        <option value="52">Parroquia 52</option>
-        <option value="53">Parroquia 53</option>
-        <option value="54">Parroquia 54</option>
-        <option value="55">Parroquia 55</option>
-        <option value="56">Parroquia 56</option>
-        <option value="57">Parroquia 57</option>
-        <option value="62">Parroquia 62</option>
-    </select>
-
-    <div id="imagenParroquia" >
-        <h2>Parroquia 50</h2>
-        <img id="imagenParroquia" src="50_consumo_energia_por_mes.png" alt="Consumo de energía en Parroquia 50">
-    </div>
-
-    <script>
-        function cambiarParroquia() {
-            var select = document.getElementById("parroquias");
-            var parroquiaSeleccionada = select.options[select.selectedIndex].value;
-            var imagen = document.getElementById("imagenParroquia");
-            var imagenParroquia = imagen.getElementsByTagName("img")[0];
-            imagenParroquia.src = parroquiaSeleccionada + "_consumo_energia_por_mes.png";
-            imagenParroquia.alt = "Consumo de energía en Parroquia " + parroquiaSeleccionada;
-            var titulo = imagen.getElementsByTagName("h2")[0];
-            titulo.textContent = "Parroquia " + parroquiaSeleccionada;
-        }
-    </script>
-</div>
-
-
-<div class="section">
-    <h2>Consumo de Energía por Cantón</h2>
-
-    <select id="cantones" onchange="cambiarCanton()">
-        <option value="1">Cantón 1</option>
-        <option value="2">Cantón 2</option>
-        <option value="3">Cantón 3</option>
-        <option value="4">Cantón 4</option>
-        <option value="7">Cantón 7</option>
-        <option value="9">Cantón 9</option>
-        <option value="10">Cantón 10</option>
-        <option value="11">Cantón 11</option>
-        <option value="12">Cantón 12</option>
-        <option value="16">Cantón 16</option>
-        <option value="20">Cantón 20</option>
-        <option value="22">Cantón 22</option>
-        <option value="23">Cantón 23</option>
-        <option value="27">Cantón 27</option>
-    </select>
-
-    <div id="imagenCanton" style="width: 100%; overflow: hidden;">
-        <img id="imagenCanton" src="1_consumo_energia_por_mes_pie.png" alt="Consumo de energía en Cantón 1" style="max-width: 100%; max-height: 100%;">
-    </div>
-
-    <script>
-        function cambiarCanton() {
-            var select = document.getElementById("cantones");
-            var cantonSeleccionado = select.options[select.selectedIndex].value;
-            var imagen = document.getElementById("imagenCanton");
-            var imagenCanton = imagen.getElementsByTagName("img")[0];
-            imagenCanton.src = cantonSeleccionado + "_consumo_energia_por_mes_pie.png";
-            imagenCanton.alt = "Consumo de energía en Cantón " + cantonSeleccionado;
-        }
-    </script>
-</div>
-
-
-<!------PORCENTAJES-->
-<section class="small-section">
-    <div class="gallery-container">
+    <!------PORCENTAJES-->
+    <section class="small-section">
+        <h3>Tarifas</h3>
+      <div class="gallery-container">
         <!-- Imágenes de la galería -->
-        <img class="gallery-img" src="rd.png" alt="RD">
-        <img class="gallery-img" src="cr.png" alt="CR">
-        <img class="gallery-img" src="rp.png" alt="RP">
-        <img class="gallery-img" src="cb.png" alt="CB">
-        <img class="gallery-img" src="co.png" alt="CO">
-        <img class="gallery-img" src="tp.png" alt="TP">
-        <img class="gallery-img" src="ba.png" alt="BA">
-        <img class="gallery-img" src="te.png" alt="TE">
-        <img class="gallery-img" src="dp.png" alt="DP">
-        <img class="gallery-img" src="of.png" alt="OF">
-        <img class="gallery-img" src="bp.png" alt="BP">
+        <img class="gallery-img" src="rd.png" alt="RD" />
+        <img class="gallery-img" src="cr.png" alt="CR" />
+        <img class="gallery-img" src="rp.png" alt="RP" />
+        <img class="gallery-img" src="cb.png" alt="CB" />
+        <img class="gallery-img" src="co.png" alt="CO" />
+        <img class="gallery-img" src="tp.png" alt="TP" />
+        <img class="gallery-img" src="ba.png" alt="BA" />
+        <img class="gallery-img" src="te.png" alt="TE" />
+        <img class="gallery-img" src="dp.png" alt="DP" />
+        <img class="gallery-img" src="of.png" alt="OF" />
+        <img class="gallery-img" src="bp.png" alt="BP" />
 
         <!-- Flecha previa -->
-        <div class="prev" onclick="plusSlides(-1)">&#10094;</div>
-        <!-- Flecha siguiente -->
-        <div class="next" onclick="plusSlides(1)">&#10095;</div>
+      </div>
     </div>
 
-    <script>
+      <script>
         let slideIndex = 0;
         let slideInterval = setInterval(showSlides, 2000); // Cambiar imagen cada 2 segundos
 
         function showSlides() {
-            let slides = document.querySelectorAll(".small-section .gallery-img");
-            for (let i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";  
-            }
-            slideIndex++;
-            if (slideIndex > slides.length) {slideIndex = 1}    
-            slides[slideIndex-1].style.display = "block";  
+          let slides = document.querySelectorAll(".small-section .gallery-img");
+          for (let i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+          }
+          slideIndex++;
+          if (slideIndex > slides.length) {
+            slideIndex = 1;
+          }
+          slides[slideIndex - 1].style.display = "block";
         }
 
         function plusSlides(n) {
-            clearInterval(slideInterval);
-            showSlides(slideIndex += n);
-            slideInterval = setInterval(showSlides, 2000);
+          clearInterval(slideInterval);
+          showSlides((slideIndex += n));
+          slideInterval = setInterval(showSlides, 2000);
         }
-    </script>
-</section>
-<div class="section">
-    <h2>Heatmap</h2>
-    <img src="heatmap.png" alt="Heatmap" style="width: 100%; height: auto;">
-</div>
+      </script>
+    </section>
     
-<div class="section" style="width: 20%;">
-    <h2>Deudas</h2>
-    <img src="deudas.png" alt="Deudas" style="max-width: 100%; height: auto;">
-</div>
 
-</body>
+    <div class="section">
+        <div id="imagenCanton" style="width: 100%; overflow: hidden">
+            <h3>Deuda por mes y cantón</h3>
+            <img
+                id="imagenCanton"
+                src="canton.png"  
+                alt="Imagen del Cantón"
+                style="max-width: 100%; max-height: 100%"
+            />
+        </div>
+    </div>
+
+
+
+    <div class="section" style="width: 20%">
+      <h2>Deudas</h2>
+      <img
+        src="deudas.png"
+        alt="Deudas"
+        style="max-width: 100%; height: auto"
+      />
+    </div>
+</div>
+  </body>
 </html>
