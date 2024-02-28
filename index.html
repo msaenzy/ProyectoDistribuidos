@@ -128,41 +128,41 @@
   </head>
   <body>
     <div class="section">
-      <h2>Anomalías de Consumo de Energía por Mes</h2>
-
-      <select id="meses" onchange="cambiarMes()">
-        <option value="enero">Enero</option>
-        <option value="febrero">Febrero</option>
-        <option value="marzo">Marzo</option>
-        <option value="abril">Abril</option>
-        <option value="mayo">Mayo</option>
-        <option value="junio">Junio</option>
-        <option value="julio">Julio</option>
-        <option value="agosto">Agosto</option>
-        <option value="septiembre">Septiembre</option>
-        <option value="octubre">Octubre</option>
-      </select>
-
-      <div id="imagenMes">
-        <img
-          src="consumo_energia_enero.png"
-          alt="Consumo de energía en enero"
-        />
-      </div>
-
-      <script>
-        function cambiarMes() {
-          var select = document.getElementById("meses");
-          var mesSeleccionado = select.options[select.selectedIndex].value;
-          var imagenMes = document.getElementById("imagenMes");
-          var titulo = imagenMes.getElementsByTagName("h2")[0];
-          var imagen = imagenMes.getElementsByTagName("img")[0];
-
-          imagen.src = "consumo_energia_" + mesSeleccionado + ".png";
-          imagen.alt = "Consumo de energía en " + mesSeleccionado;
-        }
-      </script>
+        <h1>Anomalías de Consumo de Energía por Mes</h1>
+    
+        <select id="meses1" onchange="cambiarMes1()">
+            <option value="enero1">Enero</option>
+            <option value="febrero1">Febrero</option>
+            <option value="marzo1">Marzo</option>
+            <option value="abril1">Abril</option>
+            <option value="mayo1">Mayo</option>
+            <option value="junio1">Junio</option>
+            <option value="julio1">Julio</option>
+            <option value="agosto1">Agosto</option>
+            <option value="septiembre1">Septiembre</option>
+            <option value="octubre1">Octubre</option>
+        </select>
+    
+        <div id="imagenMes1">
+            <h2 id="tituloMes1">Enero</h2>
+            <img id="imagenConsumo1" src="consumo_energia_enero.png" alt="Consumo de energía en enero">
+        </div>
+    
+        <script>
+            function cambiarMes1() {
+                var select = document.getElementById("meses1");
+                var mesSeleccionado = select.options[select.selectedIndex].value;
+                var divImagenMes = document.getElementById("imagenMes1");
+                var titulo = divImagenMes.getElementsByTagName("h2")[0];
+                var imagen = divImagenMes.getElementsByTagName("img")[0];
+                titulo.textContent = mesSeleccionado.charAt(0).toUpperCase() + mesSeleccionado.slice(1);
+                imagen.src = "consumo_energia_" + mesSeleccionado + ".png";
+                imagen.alt = "Consumo de energía en " + mesSeleccionado;
+            }
+        </script>
     </div>
+    
+    
 
     <div class="section">
       <div class="container">
@@ -286,10 +286,10 @@
     
     
 </div>
-<div class="section">
-    <h2>Heatmap</h2>
-    <img src="heatmap.png" alt="Heatmap" style="width: 100%; height: auto" />
-  </div>
+   <div class="section">
+      <h2>Heatmap</h2>
+      <img src="heatmap.png" alt="Heatmap" style="width: 100%; height: auto" />
+    </div>
 
     <!------PORCENTAJES-->
     <section class="small-section">
@@ -339,7 +339,6 @@
 
     <div class="section">
         <div id="imagenCanton" style="width: 100%; overflow: hidden">
-            <h3>Deuda por mes y cantón</h3>
             <img
                 id="imagenCanton"
                 src="canton.png"  
